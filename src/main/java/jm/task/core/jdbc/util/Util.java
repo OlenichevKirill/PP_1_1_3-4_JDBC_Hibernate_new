@@ -9,14 +9,15 @@ public class Util {
     public static final String DB_URL = "jdbc:mysql://localhost:3306/mybase";
     public static final String DB_USER_NAME = "root";
     public static final String DB_USER_PASSWORD = "QWASzx12#";
+    private static Connection connection;
 
     public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName(DB_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_USER_PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(DB_URL, DB_USER_NAME, DB_USER_PASSWORD);
+            } catch (SQLException e) {
 
+            }
         }
         return connection;
     }
